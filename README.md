@@ -49,8 +49,3 @@ Include `my_minecraft` in your node's `run_list`:
     "recipe[my_minecraft::default]"
   ]
 }
-```
-
-## License and Authors
-
-Author:: YOUR_NAME (<YOUR_EMAIL>)
