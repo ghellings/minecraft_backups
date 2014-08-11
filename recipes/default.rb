@@ -39,7 +39,7 @@ node['minecraft']['backups']['scheme'].each do |routine|
   end
 end
 
-template node['minecraft']['backups']['dir'] + '/backup.sh' do
+template node['minecraft']['backups']['script_loc'] do
   source "backup.erb"
   owner node['minecraft']['user']
   group node['minecraft']['group']
