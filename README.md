@@ -1,6 +1,6 @@
 # my_minecraft-cookbook
 
-Extension of chef-minecraft (https://github.com/gregf/chef-minecraft) with automatic backups.
+Extension of chef-minecraft (https://github.com/gregf/chef-minecraft) supplying automatic backups with customizable backup routines.
 
 ## Supported Platforms
 
@@ -49,3 +49,4 @@ Include `my_minecraft` in your node's `run_list`:
     "recipe[my_minecraft::default]"
   ]
 }
+```

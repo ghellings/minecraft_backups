@@ -21,11 +21,3 @@ default['minecraft']['backups']['scheme'] = [
     }
   }
 ]
-
-#default_attributes({
-#  'minecraft' => {
-#    'backups' => {
-#      'dir' = node['minecraft']['install_dir'] + '/backups'
-#    }
-#  }
-#})
