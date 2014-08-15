@@ -12,6 +12,12 @@ include_recipe "apt"
 include_recipe "java"
 include_recipe "minecraft"
 
+minecraft_runit_sv = resources("runit_service[minecraft]")
+minecraft_runit_sv.cookbook("my_minecraft")
+
+#bash 'create_fifo' do
+#  code "mkfifo " + node['minecraft']['install_dir'] + "/fifo"
+#end
 
 directory node['minecraft']['backups']['dir'] do
   recursive true
@@ -52,3 +58,4 @@ template node['minecraft']['backups']['script_loc'] do
     :minecraft_dir => node['minecraft']['install_dir']
   })
 end
+

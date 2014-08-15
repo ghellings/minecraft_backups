@@ -20,3 +20,4 @@ gem 'cheffish'
 gem 'knife-container', git: "https://github.com/opscode/knife-container.git"
 gem 'knife-spec'
 gem 'chefspec'
+gem 'chef-rewind'
