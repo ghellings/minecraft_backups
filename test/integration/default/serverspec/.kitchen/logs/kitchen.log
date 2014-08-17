@@ -1,0 +1,31 @@
+I, [2014-08-16T20:45:54.740437 #24617]  INFO -- Kitchen: -----> Starting Kitchen (v1.2.1)
+E, [2014-08-16T20:45:54.740827 #24617] ERROR -- Kitchen: ------Exception-------
+E, [2014-08-16T20:45:54.740871 #24617] ERROR -- Kitchen: Class: Kitchen::UserError
+E, [2014-08-16T20:45:54.740899 #24617] ERROR -- Kitchen: Message: Kitchen YAML file /home/zach/Projects/SearchSpring/mcserv/minecraft_backups/test/integration/default/serverspec/.kitchen.yml does not exist.
+E, [2014-08-16T20:45:54.740924 #24617] ERROR -- Kitchen: ------Backtrace-------
+E, [2014-08-16T20:45:54.740948 #24617] ERROR -- Kitchen: /home/zach/.rvm/gems/ruby-1.9.3-p547/gems/test-kitchen-1.2.1/lib/kitchen/loader/yaml.rb:74:in `read'
+E, [2014-08-16T20:45:54.740972 #24617] ERROR -- Kitchen: /home/zach/.rvm/gems/ruby-1.9.3-p547/gems/test-kitchen-1.2.1/lib/kitchen/config.rb:78:in `data'
+E, [2014-08-16T20:45:54.740997 #24617] ERROR -- Kitchen: /home/zach/.rvm/gems/ruby-1.9.3-p547/gems/test-kitchen-1.2.1/lib/kitchen/config.rb:66:in `suites'
+E, [2014-08-16T20:45:54.741021 #24617] ERROR -- Kitchen: /home/zach/.rvm/gems/ruby-1.9.3-p547/gems/test-kitchen-1.2.1/lib/kitchen/config.rb:90:in `filter_instances'
+E, [2014-08-16T20:45:54.741045 #24617] ERROR -- Kitchen: /home/zach/.rvm/gems/ruby-1.9.3-p547/gems/test-kitchen-1.2.1/lib/kitchen/config.rb:72:in `build_instances'
+E, [2014-08-16T20:45:54.741070 #24617] ERROR -- Kitchen: /home/zach/.rvm/gems/ruby-1.9.3-p547/gems/test-kitchen-1.2.1/lib/kitchen/config.rb:52:in `instances'
+E, [2014-08-16T20:45:54.741094 #24617] ERROR -- Kitchen: /home/zach/.rvm/gems/ruby-1.9.3-p547/gems/test-kitchen-1.2.1/lib/kitchen/command.rb:64:in `get_filtered_instances'
+E, [2014-08-16T20:45:54.741117 #24617] ERROR -- Kitchen: /home/zach/.rvm/gems/ruby-1.9.3-p547/gems/test-kitchen-1.2.1/lib/kitchen/command.rb:85:in `parse_subcommand'
+E, [2014-08-16T20:45:54.741141 #24617] ERROR -- Kitchen: /home/zach/.rvm/gems/ruby-1.9.3-p547/gems/test-kitchen-1.2.1/lib/kitchen/command/action.rb:37:in `block in call'
+E, [2014-08-16T20:45:54.741165 #24617] ERROR -- Kitchen: /home/zach/.rvm/rubies/ruby-1.9.3-p547/lib/ruby/1.9.1/benchmark.rb:280:in `measure'
+E, [2014-08-16T20:45:54.741189 #24617] ERROR -- Kitchen: /home/zach/.rvm/gems/ruby-1.9.3-p547/gems/test-kitchen-1.2.1/lib/kitchen/command/action.rb:36:in `call'
+E, [2014-08-16T20:45:54.741212 #24617] ERROR -- Kitchen: /home/zach/.rvm/gems/ruby-1.9.3-p547/gems/test-kitchen-1.2.1/lib/kitchen/cli.rb:47:in `perform'
+E, [2014-08-16T20:45:54.741236 #24617] ERROR -- Kitchen: /home/zach/.rvm/gems/ruby-1.9.3-p547/gems/test-kitchen-1.2.1/lib/kitchen/cli.rb:118:in `block (2 levels) in <class:CLI>'
+E, [2014-08-16T20:45:54.741260 #24617] ERROR -- Kitchen: /home/zach/.rvm/gems/ruby-1.9.3-p547/gems/thor-0.19.1/lib/thor/command.rb:27:in `run'
+E, [2014-08-16T20:45:54.741283 #24617] ERROR -- Kitchen: /home/zach/.rvm/gems/ruby-1.9.3-p547/gems/thor-0.19.1/lib/thor/invocation.rb:126:in `invoke_command'
+E, [2014-08-16T20:45:54.741306 #24617] ERROR -- Kitchen: /home/zach/.rvm/gems/ruby-1.9.3-p547/gems/test-kitchen-1.2.1/lib/kitchen/cli.rb:233:in `invoke_task'
+E, [2014-08-16T20:45:54.741330 #24617] ERROR -- Kitchen: /home/zach/.rvm/gems/ruby-1.9.3-p547/gems/thor-0.19.1/lib/thor.rb:359:in `dispatch'
+E, [2014-08-16T20:45:54.741354 #24617] ERROR -- Kitchen: /home/zach/.rvm/gems/ruby-1.9.3-p547/gems/thor-0.19.1/lib/thor/base.rb:440:in `start'
+E, [2014-08-16T20:45:54.741377 #24617] ERROR -- Kitchen: /home/zach/.rvm/gems/ruby-1.9.3-p547/gems/test-kitchen-1.2.1/bin/kitchen:13:in `block in <top (required)>'
+E, [2014-08-16T20:45:54.741401 #24617] ERROR -- Kitchen: /home/zach/.rvm/gems/ruby-1.9.3-p547/gems/test-kitchen-1.2.1/lib/kitchen/errors.rb:81:in `with_friendly_errors'
+E, [2014-08-16T20:45:54.741425 #24617] ERROR -- Kitchen: /home/zach/.rvm/gems/ruby-1.9.3-p547/gems/test-kitchen-1.2.1/bin/kitchen:13:in `<top (required)>'
+E, [2014-08-16T20:45:54.741449 #24617] ERROR -- Kitchen: /home/zach/.rvm/gems/ruby-1.9.3-p547/bin/kitchen:23:in `load'
+E, [2014-08-16T20:45:54.741486 #24617] ERROR -- Kitchen: /home/zach/.rvm/gems/ruby-1.9.3-p547/bin/kitchen:23:in `<main>'
+E, [2014-08-16T20:45:54.741520 #24617] ERROR -- Kitchen: /home/zach/.rvm/gems/ruby-1.9.3-p547/bin/ruby_executable_hooks:15:in `eval'
+E, [2014-08-16T20:45:54.741557 #24617] ERROR -- Kitchen: /home/zach/.rvm/gems/ruby-1.9.3-p547/bin/ruby_executable_hooks:15:in `<main>'
+E, [2014-08-16T20:45:54.741582 #24617] ERROR -- Kitchen: ----------------------
