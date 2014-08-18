@@ -5,7 +5,7 @@
 #
 
 if [ $# != 1 ]; then
-  echo "Takes one parameter"
+  echo "Takes one argument."
   exit
 fi
 
@@ -20,7 +20,22 @@ fi
     find . -mtime +<%= routine['lifespan']['days'] %> -exec rm {} \;
     <% end %>
     if [ $1 == "<%= routine['name'] %>" ]; then
+      echo "/save-off
+      " > /tmp/minecraft.fifo
+
+      echo "/say Backing up world...
+      " > /tmp/minecraft.fifo
+      
+      echo "/save-all
+      " > /tmp/minecraft.fifo
+      tail -f -n0 <%= @minecraft_dir %>/logs/latest.log | grep -qe "^\[..:..:..\] \[Server thread/INFO\]: Saved the world$"
+      sleep 1
       tar -cvf $(date +"<%= @backup_format %>").tar <%= @minecraft_dir %>/world
+      
+      echo "/say Backup complete.
+      " > /tmp/minecraft.fifo
+      echo "/save-on
+      " > /tmp/minecraft.fifo
     fi
   fi
 
