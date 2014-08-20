@@ -1,0 +1,4 @@
+check process minecraft with pidfile /etc/sv/minecraft/supervise/pid
+  start program = "runsv /etc/sv/minecraft/"
+  if failed port <%= @listen_port %> then restart
+  if failed port <%= @listen_port %> then alert

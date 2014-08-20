@@ -1,4 +1,4 @@
-#
+
 # Cookbook Name:: my_minecraft
 # Recipe:: default
 #
@@ -10,6 +10,8 @@
 include_recipe "apt"
 include_recipe "java"
 include_recipe "minecraft"
+include_recipe "monit"
+
 
 
 minecraft_runit_sv = resources("runit_service[minecraft]")
@@ -63,5 +65,13 @@ template node['minecraft']['backups']['dir'] + '/backup.sh' do
     :backup_dir => node['minecraft']['backups']['dir'],
     :backup_format => node['minecraft']['backups']['name_format'],
     :minecraft_dir => node['minecraft']['install_dir']
+  })
+end
+
+template "/etc/monit/conf.d/minecraft.conf" do
+  action :create
+  source "monit.erb"
+  variables({
+    :listen_port => node['minecraft']['properties']['server-port']
   })
 end
