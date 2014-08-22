@@ -38,24 +38,6 @@ end
 my_minecraft_whitelist_player "notch" do
   action :create
 end
-
-my_minecraft_banned_player "steve" do
-  date "10/10/2010"
-  by "zach"
-  banned_until "10/10/2020"
-  reason "For testing"
-end
-
-my_minecraft_banned_ip "8.8.8.8" do
-  date "10/10/2010"
-  by "zach"
-  banned_until "10/10/2020"
-  reason "For testing"
-end
-
-my_minecraft_whitelist_player "notch" do
-  action :create
-end
 # TESTING END
 
 minecraft_runit_sv = resources("runit_service[minecraft]")
