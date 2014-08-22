@@ -7,13 +7,11 @@
 # All rights reserved - Do Not Redistribute
 #
 
-
-if node[:platform_family].include?("rhel")    
-  include_recipe "yum-epel"
-end
-
-if node[:platform_family].include?("debian")    
+case node['platform']
+when 'ubuntu', 'debian'
   include_recipe "apt"
+when 'centos', 'redhat', 'fedora'
+  include_recipe "yum-epel"
 end
 
 include_recipe "java"
