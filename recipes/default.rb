@@ -7,12 +7,56 @@
 # All rights reserved - Do Not Redistribute
 #
 
-include_recipe "apt"
+
+if node[:platform_family].include?("rhel")    
+  include_recipe "yum-epel"
+end
+
+if node[:platform_family].include?("debian")    
+  include_recipe "apt"
+end
+
 include_recipe "java"
 include_recipe "minecraft"
 include_recipe "monit"
 
+# TESTING START
+my_minecraft_banned_player "steve" do
+  date "10/10/2010"
+  by "zach"
+  banned_until "10/10/2020"
+  reason "For testing"
+end
 
+my_minecraft_banned_ip "8.8.8.8" do
+  date "10/10/2010"
+  by "zach"
+  banned_until "10/10/2020"
+  reason "For testing"
+end
+
+my_minecraft_whitelist_player "notch" do
+  action :create
+end
+
+my_minecraft_banned_player "steve" do
+  date "10/10/2010"
+  by "zach"
+  banned_until "10/10/2020"
+  reason "For testing"
+end
+
+my_minecraft_banned_ip "8.8.8.8" do
+  date "10/10/2010"
+  by "zach"
+  banned_until "10/10/2020"
+  reason "For testing"
+end
+
+my_minecraft_whitelist_player "notch" do
+  action :create
+end
+# TESTING END
 
 minecraft_runit_sv = resources("runit_service[minecraft]")
 minecraft_runit_sv.cookbook("my_minecraft")
