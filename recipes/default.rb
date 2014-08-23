@@ -18,25 +18,32 @@ include_recipe "java"
 include_recipe "minecraft"
 include_recipe "monit"
 
-# TESTING START
-my_minecraft_banned_player "steve" do
-  date "10/10/2010"
-  by "zach"
-  banned_until "10/10/2020"
-  reason "For testing"
+data_bag('banned_players').each do |player|
+  data = data_bag_item('banned_players', player)  
+  my_minecraft_banned_player player do
+    date data['date']
+    by data['by']
+    banned_until data['banned_until']
+    reason data['reason']
+  end
 end
 
-my_minecraft_banned_ip "8.8.8.8" do
-  date "10/10/2010"
-  by "zach"
-  banned_until "10/10/2020"
-  reason "For testing"
+
+data_bag('banned_ips').each do |ip|
+  data = data_bag_item('banned_ips', ip)  
+  my_minecraft_banned_ip ip do
+    date data['date']
+    by data['by']
+    banned_until data['banned_until']
+    reason data['reason']
+  end
 end
 
-my_minecraft_whitelist_player "notch" do
-  action :create
+data_bag('whitelist_players').each do |player|
+  my_minecraft_whitelist_player player do
+    action :create
+  end
 end
-# TESTING END
 
 minecraft_runit_sv = resources("runit_service[minecraft]")
 minecraft_runit_sv.cookbook("my_minecraft")
