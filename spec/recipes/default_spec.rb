@@ -2,7 +2,10 @@ require_relative '../spec_helper'
 
 describe 'my_minecraft::default' do
   before do
-  	stub_command("rpm -qa | grep -q '^runit'").and_return(false)
+    stub_command("rpm -qa | grep -q '^runit'").and_return(false)
+    stub_data_bag("banned_players").and_return([])
+    stub_data_bag("banned_ips").and_return([])
+    stub_data_bag("whitelist_players").and_return([])
   end
 
   subject do 
@@ -17,7 +20,6 @@ describe 'my_minecraft::default' do
   context 'minecraft backups' do
     it { should include_recipe 'minecraft' }
     it { should include_recipe 'java' }
-    it { should include_recipe 'apt' }
   
     let(:chef_run) { ChefSpec::Runner.new.converge(described_recipe) }
     
