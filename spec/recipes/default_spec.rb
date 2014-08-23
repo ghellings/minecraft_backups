@@ -41,6 +41,10 @@ describe 'my_minecraft::default' do
       end
     end
     
+    it 'creates minecraft.conf for monit' do
+      expect(chef_run).to create_template("/etc/monit/conf.d/minecraft.conf")
+    end
+
     it 'creates backup.sh script for minecraft' do
       expect(chef_run).to create_template(chef_run.node['minecraft']['backups']['script_loc']).with(
           user: chef_run.node['minecraft']['user'],
