@@ -28,7 +28,6 @@ data_bag('banned_players').each do |player|
   end
 end
 
-
 data_bag('banned_ips').each do |ip|
   data = data_bag_item('banned_ips', ip)  
   my_minecraft_banned_ip ip do

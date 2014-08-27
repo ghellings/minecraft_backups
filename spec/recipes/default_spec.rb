@@ -3,9 +3,28 @@ require_relative '../spec_helper'
 describe 'my_minecraft::default' do
   before do
     stub_command("rpm -qa | grep -q '^runit'").and_return(false)
-    stub_data_bag("banned_players").and_return([])
-    stub_data_bag("banned_ips").and_return([])
-    stub_data_bag("whitelist_players").and_return([])
+
+    stub_data_bag("banned_players").and_return(["zach"])
+    stub_data_bag_item("banned_players", "zach").and_return({
+      "date" => "10/10/10",
+      "by" => "chefspec",
+      "banned_until" => "10/11/10",
+      "reason" => "for testing"
+    })
+
+    stub_data_bag("banned_ips").and_return(["8.8.8.8"])
+    stub_data_bag_item("banned_ips", "8.8.8.8").and_return({
+      "date" => "10/10/10",
+      "by" => "chefspec",
+      "banned_until" => "10/11/10",
+      "reason" => "for testing"
+    })
+
+    stub_data_bag("whitelist_players").and_return(["notch"])
+
+    stub_command("grep -q '^zach|' /srv/minecraft/banned-players.txt").and_return(false)
+    stub_command("grep -q '^8.8.8.8|' /srv/minecraft/banned-ips.txt").and_return(false)
+    stub_command("grep -q '^notch$' /srv/minecraft/white-list.txt").and_return(false)
   end
 
   subject do 
@@ -21,7 +40,7 @@ describe 'my_minecraft::default' do
     it { should include_recipe 'minecraft' }
     it { should include_recipe 'java' }
   
-    let(:chef_run) { ChefSpec::Runner.new.converge(described_recipe) }
+    let(:chef_run) { ChefSpec::Runner.new(step_into: ['my_minecraft_banned_ip', 'my_minecraft_banned_player', 'my_minecraft_whitelist_player']).converge(described_recipe) }
     
     it 'creates directory tree for minecraft backups' do
       expect(chef_run).to create_directory(chef_run.node['minecraft']['backups']['dir']).with(
@@ -66,6 +85,12 @@ describe 'my_minecraft::default' do
           expect(routine['minute'] == nil || routine['hour'] == nil).to eq(true)
           expect(routine['lifespan'] == nil || routine['lifespan']['hours'] == nil || routine['lifespan']['days'] == nil).to eq(true)
       end
+    end
+
+    it 'creates player banned/whitelist data' do
+      expect(chef_run).to ban_player("zach")
+      expect(chef_run).to ban_ip("8.8.8.8")
+      expect(chef_run).to whitelist_player("notch")
     end
   end
 end
