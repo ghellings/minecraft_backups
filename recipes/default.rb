@@ -1,4 +1,3 @@
-
 # Cookbook Name:: my_minecraft
 # Recipe:: default
 #
@@ -17,6 +16,7 @@ end
 include_recipe "java"
 include_recipe "minecraft"
 include_recipe "monit"
+
 
 data_bag('banned_players').each do |player|
   data = data_bag_item('banned_players', player)  
@@ -42,6 +42,23 @@ data_bag('whitelist_players').each do |player|
   my_minecraft_whitelist_player player do
     action :create
   end
+end
+
+Ohai.plugin(:BannedUsers) do
+  provides "banned", "banned/players", "banned/ips"
+
+  collect_data(:default) do
+    banned Mash.new
+    banned["players"] << []
+    banned["ip"] << []
+    data_bag('banned_players').each do |player|
+      banned["players"] << player 
+    end
+    data_bag('banned_ips').each do |player|
+      banned["ips"] << player 
+    end
+  end
+
 end
 
 minecraft_runit_sv = resources("runit_service[minecraft]")
