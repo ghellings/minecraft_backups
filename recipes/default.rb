@@ -50,7 +50,7 @@ Ohai.plugin(:BannedUsers) do
   collect_data(:default) do
     banned Mash.new
     banned["players"] << []
-    banned["ip"] << []
+    banned["ips"] << []
     data_bag('banned_players').each do |player|
       banned["players"] << player 
     end
