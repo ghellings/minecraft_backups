@@ -5,6 +5,7 @@
 #
 # All rights reserved - Do Not Redistribute
 #
+include_recipe "ohai"
 
 case node['platform']
 when 'ubuntu', 'debian'
@@ -44,21 +45,13 @@ data_bag('whitelist_players').each do |player|
   end
 end
 
-Ohai.plugin(:BannedUsers) do
-  provides "banned", "banned/players", "banned/ips"
+ohai "reload" do
+  action :reload
+end
 
-  collect_data(:default) do
-    banned Mash.new
-    banned["players"] << []
-    banned["ips"] << []
-    data_bag('banned_players').each do |player|
-      banned["players"] << player 
-    end
-    data_bag('banned_ips').each do |player|
-      banned["ips"] << player 
-    end
-  end
-
+template "#{node[:ohai][:plugin_path]}/ohai_banned_users.rb" do
+  source "ohai_banned_users.rb.erb"
+  notifies :reload, "ohai[reload]"
 end
 
 minecraft_runit_sv = resources("runit_service[minecraft]")

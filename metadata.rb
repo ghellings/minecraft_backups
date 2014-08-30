@@ -7,7 +7,8 @@ long_description 'Installs/Configures my_minecraft'
 version          '0.1.0'
 
 depends		"apt"
-depends         "yum-epel"
+depends     "yum-epel"
 depends		"java"
 depends		"minecraft"
 depends		"monit"
+depends     "ohai"

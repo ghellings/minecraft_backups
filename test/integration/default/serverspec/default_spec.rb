@@ -53,3 +53,11 @@ end
 describe command('/srv/minecraft/backups/backup.sh') do
   it { should return_stdout 'Takes one argument.' }
 end
+
+describe file('/etc/chef/ohai_plugins/ohai_banned_users.rb') do
+  it { should be_file}
+end
+
+describe command('ohai -d /etc/chef/ohai_plugins/') do
+  it { should return_stdout /banned/}
+end
