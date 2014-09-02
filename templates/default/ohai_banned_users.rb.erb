@@ -1,0 +1,16 @@
+Ohai.plugin(:BannedUsers) do
+  provides "banned", "banned/players", "banned/ips"
+
+  collect_data(:default) do
+    banned Mash.new
+    banned["players"] << []
+    banned["ips"] << []
+    data_bag('banned_players').each do |player|
+      banned["players"] << player 
+    end
+    data_bag('banned_ips').each do |player|
+      banned["ips"] << player 
+    end
+  end
+
+end
