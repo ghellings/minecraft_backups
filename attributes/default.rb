@@ -6,6 +6,8 @@ default['minecraft']['jar_name'] = 'minecraft_server.1.7.5.jar'
 default['minecraft']['backups']['dir'] = node['minecraft']['install_dir'] + '/backups'
 default['minecraft']['backups']['script_loc'] = node['minecraft']['backups']['dir'] + "/backup.sh"
 default['minecraft']['backups']['name_format'] = "%Y%m%d_%H%M"
+default['minecraft']['alert_email'] = "root@localhost"
+default['minecraft']['pidfile'] ='/srv/minecraft/supervise/pid'
 default['minecraft']['backups']['scheme'] = [
   {
     "name" => "hourly",

@@ -62,6 +62,11 @@ describe file('/etc/chef/ohai_plugins/ohai_backup_history.rb') do
   it { should be_file}
 end
 
+describe file('/etc/monit.conf') do
+  it { should_not be_file}
+end
+
+
 describe command('ohai -d /etc/chef/ohai_plugins/') do
   it { should return_stdout /"minecraft_banned": *{\n *"players": *\[\n[^\]]*"notch"[^\]]*"zach"[^\]]*\],\n *"ips": *\[\n[^\]]*"8\.8\.8\.8"[^\]]*\]/ }
   it { should return_stdout /"minecraft_backup_history": *{\n *"all": \[\n[^\]]*\]\n *}/ }

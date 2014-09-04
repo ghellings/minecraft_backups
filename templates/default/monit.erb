@@ -1,4 +1,12 @@
-check process minecraft with pidfile /etc/sv/minecraft/supervise/pid
-  start program = "runsv /etc/sv/minecraft/"
-  if failed port <%= @listen_port %> then restart
-  if failed port <%= @listen_port %> then alert
+# ------------------------------------------
+# Monit configuration file for Sensu Client
+# ------------------------------------------
+
+check process minecraft with pidfile <%= node.minecraft[:pidfile] %>
+  start program = "/etc/init.d/minecraft restart" with timeout 60 seconds
+  stop program  = "/etc/init.d/minecraft stop" with timeout 5 seconds
+  if cpu > 90% for 15 cycles then alert
+  if totalmem > 90% for 15 cycles then alert
+  if loadavg(15min) greater than 10 for 50 cycles then alert
+  alert <%= node.minecraft[:alert_email] %> NOT ON { action, instance, pid, ppid }
+  group minecraft

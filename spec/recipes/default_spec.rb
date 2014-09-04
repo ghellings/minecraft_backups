@@ -40,6 +40,7 @@ describe 'my_minecraft::default' do
     it { should include_recipe "ohai"}
     it { should include_recipe 'minecraft' }
     it { should include_recipe 'java' }
+    it { should delete_file '/etc/monit.conf'}
   
     let(:chef_run) { ChefSpec::Runner.new(step_into: ['my_minecraft_banned_ip', 'my_minecraft_banned_player', 'my_minecraft_whitelist_player']).converge(described_recipe) }
  

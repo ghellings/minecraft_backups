@@ -131,3 +131,8 @@ template "/etc/monit/conf.d/minecraft.conf" do
     :listen_port => node['minecraft']['properties']['server-port']
   })
 end
+
+file '/etc/monit.conf' do
+  action :delete
+end
+
