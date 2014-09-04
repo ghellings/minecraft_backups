@@ -7,15 +7,17 @@ Ohai.plugin(:BannedUsers) do
     minecraft_banned["ips"] = []
 
     bannedPlayerFile = File.new("<%= @install_dir + '/banned-players.txt' %>")
-    while line = bannedPlayerFile.gets
-      if line[0,1] != "#"
+    while line_raw = bannedPlayerFile.gets
+      line = line_raw.strip
+      if !line.empty? and line[0,1] != "#"
         minecraft_banned["players"] << line.split('|')[0]
       end
     end
 
     bannedIpFile = File.new("<%= @install_dir + '/banned-ips.txt' %>")
-    while line = bannedIpFile.gets
-      if line[0,1] != "#"
+    while line_raw = bannedIpFile.gets
+      line = line_raw.strip
+      if !line.empty? and line[0,1] != "#"
         minecraft_banned["ips"] << line.split('|')[0]
       end
     end

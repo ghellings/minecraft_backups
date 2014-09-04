@@ -7,7 +7,7 @@ Ohai.plugin(:BackupHistory) do
     
     backupHistoryFile = File.new("<%= @backups_dir + '/backups.log' %>")
     while line = backupHistoryFile.gets
-      minecraft_backup_history["all"] << line
+      minecraft_backup_history["all"] << line.strip
     end
   end
 
