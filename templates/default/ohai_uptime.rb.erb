@@ -1,0 +1,10 @@
+Ohai.plugin(:MinecraftUptime) do
+  provides "minecraft_uptime"
+
+  collect_data(:default) do
+    minecraft_uptime Mash.new
+    
+    minecraft_uptime["uptime"] = `service minecraft status`.gsub(/run:.+\) (\d+.+);.*\n*/, '\1')
+  end
+
+end

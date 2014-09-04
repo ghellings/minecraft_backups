@@ -1,0 +1,14 @@
+Ohai.plugin(:BackupHistory) do
+  provides "minecraft_backup_history", "minecraft_backup_history/all"
+
+  collect_data(:default) do
+    minecraft_backup_history Mash.new
+    minecraft_backup_history["all"] = []
+    
+    backupHistoryFile = File.new("<%= @backups_dir + '/backups.log' %>")
+    while line = backupHistoryFile.gets
+      minecraft_backup_history["all"] << line
+    end
+  end
+
+end

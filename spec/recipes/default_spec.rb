@@ -43,8 +43,10 @@ describe 'my_minecraft::default' do
   
     let(:chef_run) { ChefSpec::Runner.new(step_into: ['my_minecraft_banned_ip', 'my_minecraft_banned_player', 'my_minecraft_whitelist_player']).converge(described_recipe) }
  
-    it 'creates ohai plugin from template' do
+    it 'creates ohai plugins from template' do
       expect(chef_run).to render_file "/etc/chef/ohai_plugins/ohai_banned_users.rb"
+      expect(chef_run).to render_file "/etc/chef/ohai_plugins/ohai_backup_history.rb"
+      expect(chef_run).to render_file "/etc/chef/ohai_plugins/ohai_uptime.rb"
     end
 
     it 'creates directory tree for minecraft backups' do

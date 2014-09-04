@@ -52,6 +52,22 @@ end
 template "#{node[:ohai][:plugin_path]}/ohai_banned_users.rb" do
   source "ohai_banned_users.rb.erb"
   notifies :reload, "ohai[reload]"
+  variables({
+    :install_dir => node['minecraft']['install_dir']
+  })
+end
+
+template "#{node[:ohai][:plugin_path]}/ohai_backup_history.rb" do
+  source "ohai_backup_history.rb.erb"
+  notifies :reload, "ohai[reload]"
+  variables({
+    :backups_dir => node['minecraft']['backups']['dir']
+  })
+end
+
+template "#{node[:ohai][:plugin_path]}/ohai_uptime.rb" do
+  source "ohai_uptime.rb.erb"
+  notifies :reload, "ohai[reload]"
 end
 
 minecraft_runit_sv = resources("runit_service[minecraft]")

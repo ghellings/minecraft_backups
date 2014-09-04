@@ -1,15 +1,23 @@
 Ohai.plugin(:BannedUsers) do
-  provides "banned", "banned/players", "banned/ips"
+  provides "minecraft_banned", "minecraft_banned/players", "minecraft_banned/ips"
 
   collect_data(:default) do
-    banned Mash.new
-    banned["players"] << []
-    banned["ips"] << []
-    data_bag('banned_players').each do |player|
-      banned["players"] << player 
+    minecraft_banned Mash.new
+    minecraft_banned["players"] = []
+    minecraft_banned["ips"] = []
+
+    bannedPlayerFile = File.new("<%= @install_dir + '/banned-players.txt' %>")
+    while line = bannedPlayerFile.gets
+      if line[0,1] != "#"
+        minecraft_banned["players"] << line.split('|')[0]
+      end
     end
-    data_bag('banned_ips').each do |player|
-      banned["ips"] << player 
+
+    bannedIpFile = File.new("<%= @install_dir + '/banned-ips.txt' %>")
+    while line = bannedIpFile.gets
+      if line[0,1] != "#"
+        minecraft_banned["ips"] << line.split('|')[0]
+      end
     end
   end
 

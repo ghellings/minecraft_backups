@@ -36,6 +36,8 @@ fi
       " > /tmp/minecraft.fifo
       echo "/save-on
       " > /tmp/minecraft.fifo
+
+      echo "$(date)" >> <%= @backup_dir %>/backups.log
     fi
   fi
 
